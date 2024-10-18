@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nithishkumar_test_project/Presentation/login/screen_login.dart';
 
+import 'Presentation/Home/Screen_main.dart';
 import 'Presentation/Home/screen_home.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
       routes: {
         '/': (context) => ScreenLogin(),
-        '/home':(context) => const ScreenHome(),
+        '/home':(context) => const ScreenMainPage(),
       },
       debugShowCheckedModeBanner: false,
     );

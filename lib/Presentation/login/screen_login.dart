@@ -35,115 +35,115 @@ class ScreenLogin extends StatelessWidget {
         create: (context) => LoginBloc(ApiService()),
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child:Container(
-                decoration:  BoxDecoration(
-                  image: DecorationImage(image:AssetImage('Assets/img.png'),
-
-                  )
-                ),
-                child:Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // Email TextField
-                  TextField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      border: InputBorder.none,
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 2.0),
-                      ),
-                      prefixIcon: Icon(Icons.email, color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Password TextField with visibility toggle
-                  BlocBuilder<LoginBloc, LoginState>(
-                    builder: (context, state) {
-                      return TextField(
-                        controller: _passwordController,
-                        obscureText: state is PasswordInitial && state.isObscured,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
+            return Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage('Assets/img.png'),
+                  fit: BoxFit.cover,
+                )),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // Email TextField
+                      TextField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
                           border: InputBorder.none,
-                          enabledBorder: const UnderlineInputBorder(
+                          enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
                           ),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white, width: 2.0),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0),
                           ),
-                          prefixIcon: const Icon(Icons.lock, color: Colors.white),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              state is PasswordInitial && state.isObscured
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              BlocProvider.of<LoginBloc>(context)
-                                  .add(TogglePasswordVisibility());
-                            },
-                          ),
+                          prefixIcon: Icon(Icons.email, color: Colors.white),
                         ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 30),
+                      ),
+                      const SizedBox(height: 20),
 
-                  // Login Button with Loading State
-                  BlocConsumer<LoginBloc, LoginState>(
-                    listener: (context, state) {
-                      if (state is LoginSuccess) {
-                        _showDialog(context, 'Success', state.message);
-                      } else if (state is LoginFailure) {
-                        _showDialog(context, 'Error', state.error);
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is LoginLoading) {
-                        return const CircularProgressIndicator();
-                      }
-
-                      return ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(size.width/1.3, 20)
-                        ),
-                        onPressed: () {
-                          BlocProvider.of<LoginBloc>(context).add(
-                            LoginSubmitted(
-                              _emailController.text,
-                              _passwordController.text,
+                      // Password TextField with visibility toggle
+                      BlocBuilder<LoginBloc, LoginState>(
+                        builder: (context, state) {
+                          return TextField(
+                            controller: _passwordController,
+                            obscureText:
+                                state is PasswordInitial && state.isObscured,
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              border: InputBorder.none,
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 2.0),
+                              ),
+                              prefixIcon:
+                                  const Icon(Icons.lock, color: Colors.white),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  state is PasswordInitial && state.isObscured
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  BlocProvider.of<LoginBloc>(context)
+                                      .add(TogglePasswordVisibility());
+                                },
+                              ),
                             ),
                           );
                         },
-                        child: const Text('Login'),
-                      );
-                    },
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text:
-                      "Don't Have an account",
-                      children: [
-                        TextSpan(
-                          text: 'Create Account',
-                          style: TextStyle(color: Colors.white),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
+                      ),
+                      const SizedBox(height: 30),
+
+                      // Login Button with Loading State
+                      BlocConsumer<LoginBloc, LoginState>(
+                        listener: (context, state) {
+                          if (state is LoginSuccess) {
+                            _showDialog(context, 'Success', state.message);
+                          } else if (state is LoginFailure) {
+                            _showDialog(context, 'Error', state.error);
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is LoginLoading) {
+                            return const CircularProgressIndicator();
+                          }
+
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                fixedSize: Size(size.width / 1.3, 20)),
+                            onPressed: () {
+                              BlocProvider.of<LoginBloc>(context).add(
+                                LoginSubmitted(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                ),
+                              );
                             },
+                            child: const Text('Login'),
+                          );
+                        },
+                      ),
+                      Text.rich(
+                        TextSpan(
+                          text: "Don't Have an account",
+                          children: [
+                            TextSpan(
+                              text: 'Create Account',
+                              style: TextStyle(color: Colors.white),
+                              recognizer: TapGestureRecognizer()..onTap = () {},
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),)
-            );
+                ));
           },
         ),
       ),
@@ -170,4 +170,3 @@ class ScreenLogin extends StatelessWidget {
     );
   }
 }
-

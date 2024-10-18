@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+final kHeight = SizedBox(
+  height: 10,
+);
+
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
 
@@ -10,39 +14,26 @@ class ScreenHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> adUrls = [
       '',
+      '',
+      '',
+      '',
+      '',
+      '',
     ];
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset('Assets/img_3.png', height: 40),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/Home');
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.favorite_border),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/Home');
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.leave_bags_at_home_sharp),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/Home');
-            },
-          ),
-        ],
-      ),
       body: ListView(
         children: [
+          kHeight,
           BannerWidgets(),
-
+          kHeight,
+          HeadLineWidgets(
+            text: 'Our Brands',
+          ),
           SizedBox(
             height: 152,
-            child: PageView(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               children: [
                 ImageSize(
                   image: 'Assets/row/639x837_1 1.png',
@@ -51,24 +42,28 @@ class ScreenHome extends StatelessWidget {
                 ImageSize(
                   image: 'Assets/row/TWIN-CAPSULE 1.png',
                 ),
-              
-                ImageSize(image: 'Assets/row/639x837_1 1.png',),
-                 ImageSize(
+                ImageSize(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
+                ImageSize(
                   image: 'Assets/row/639x837_1 1.png',
                 ),
                 ImageSize(
                   image: 'Assets/row/TWIN-CAPSULE 1.png',
                 ),
-              
-                ImageSize(image: 'Assets/row/639x837_1 1.png',),
-                
-                
+                ImageSize(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
               ],
             ),
           ),
+          HeadLineWidgets(
+            text: 'Suggested For You',
+          ),
           SizedBox(
             height: 230,
-            child: PageView(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               children: [
                 ImageSize2(
                   image: 'Assets/row/639x837_1 1.png',
@@ -77,18 +72,18 @@ class ScreenHome extends StatelessWidget {
                 ImageSize2(
                   image: 'Assets/row/TWIN-CAPSULE 1.png',
                 ),
-
-                ImageSize2(image: 'Assets/row/639x837_1 1.png',),
-                 ImageSize2(
+                ImageSize2(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
+                ImageSize2(
                   image: 'Assets/row/639x837_1 1.png',
                 ),
                 ImageSize2(
                   image: 'Assets/row/TWIN-CAPSULE 1.png',
                 ),
-
-                ImageSize2(image: 'Assets/row/639x837_1 1.png',),
-
-
+                ImageSize2(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
               ],
             ),
           ),
@@ -99,15 +94,73 @@ class ScreenHome extends StatelessWidget {
                 width: size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color:Colors.cyan,
+                  color: Colors.cyan,
                 ),
                 child: AdCarousel(
                   adUrls: adUrls,
                 )),
           ),
+          HeadLineWidgets(
+            text: 'BestSellers',
+          ),
+          SizedBox(
+            height: 230,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ImageSize2(
+                  image: 'Assets/row/639x837_1 1.png',
+                  child: Image.asset(""),
+                ),
+                ImageSize2(
+                  image: 'Assets/row/TWIN-CAPSULE 1.png',
+                ),
+                ImageSize2(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
+                ImageSize2(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
+                ImageSize2(
+                  image: 'Assets/row/TWIN-CAPSULE 1.png',
+                ),
+                ImageSize2(
+                  image: 'Assets/row/639x837_1 1.png',
+                ),
+              ],
+            ),
+          ),
+          HeadLineWidgets(
+            text: 'Trending Categories',
+          ),
         ],
       ),
     );
+  }
+}
+
+class HeadLineWidgets extends StatelessWidget {
+  const HeadLineWidgets({
+    super.key,
+    required this.text,
+  });
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      SizedBox(
+        width: 20,
+      ),
+      Text(text, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      Spacer(),
+      Text(
+        "View All",
+        style: TextStyle(),
+      ),
+      SizedBox(
+        width: 20,
+      ),
+    ]);
   }
 }
 
@@ -123,16 +176,21 @@ class ImageSize extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      width: 114,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover)),
-      child: child,
+    return Padding(
+      padding: EdgeInsets.only(right: 8.0),
+      child: Container(
+        height: 150,
+        width: 114,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            image:
+                DecorationImage(image: AssetImage(image), fit: BoxFit.cover)),
+        child: child,
+      ),
     );
   }
 }
+
 class ImageSize2 extends StatelessWidget {
   const ImageSize2({
     super.key,
@@ -145,14 +203,20 @@ class ImageSize2 extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 161,
-      width: 230,
-      decoration: BoxDecoration(
+    return Column(children: [
+      Container(
+        height: 161,
+        width: 230,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover),),
-      child: child,
-    );
+          image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+        ),
+        child: child,
+      ),
+      kHeight,
+      Text("data"),
+Text("\$75.00")
+    ]);
   }
 }
 
@@ -167,24 +231,25 @@ class BannerWidgets extends StatelessWidget {
       height: 240,
       width: 390,
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('Assets/img_2.png'))),
-      child: Container(
-        height: 10,
-        width: 50,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: Colors.black)),
-        alignment: Alignment.bottomRight,
-        child: TextButton(
-          onPressed: () {},
-          child: Text('Shop Now'),
+          image: DecorationImage(
+              image: AssetImage('Assets/img_2.png'), fit: BoxFit.cover)),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          fixedSize: Size(50, 10),
+          side: BorderSide(color: Colors.white),
+          alignment: Alignment.bottomRight,
+        ),
+        onPressed: () {},
+        child: Text(
+          'Shop Now',
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );
   }
 }
-
-
 
 class AdCarousel extends StatefulWidget {
   const AdCarousel({super.key, required this.adUrls});
@@ -257,11 +322,11 @@ class _AdCarouselState extends State<AdCarousel> {
                     ),
                   ),
                 ),
-                placeholder: (context, url) =>Center(
+                placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(
-                      color: Colors.black,
-                    )),
-                errorWidget: (context, url, error) =>  Icon(
+                  color: Colors.black,
+                )),
+                errorWidget: (context, url, error) => Icon(
                   Icons.error,
                   size: 130,
                   color: Colors.white,
@@ -286,7 +351,7 @@ class _AdCarouselState extends State<AdCarousel> {
   List<Widget> _buildIndicators() {
     return List.generate(
       widget.adUrls.length,
-          (index) => Container(
+      (index) => Container(
         width: 8,
         height: 8,
         margin: const EdgeInsets.symmetric(horizontal: 4),
