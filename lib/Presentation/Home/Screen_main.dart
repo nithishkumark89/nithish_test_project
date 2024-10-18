@@ -24,6 +24,7 @@ class _ScreenMainPageState extends State<ScreenMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 50,
         title: Image.asset('Assets/img_3.png', height: 40),
         actions: <Widget>[
           IconButton(

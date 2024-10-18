@@ -233,20 +233,20 @@ class BannerWidgets extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('Assets/img_2.png'), fit: BoxFit.cover)),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          fixedSize: Size(50, 10),
-          side: BorderSide(color: Colors.white),
-          alignment: Alignment.bottomRight,
-        ),
-        onPressed: () {},
-        child: Text(
-          'Shop Now',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
+      // child: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(
+      //     fixedSize: Size(50, 10),
+      //     side: BorderSide(color: Colors.white),
+      //     alignment: Alignment.bottomRight,
+      //   ),
+      //   onPressed: () {},
+      //   child: Text(
+      //     'Shop Now',
+      //     style: TextStyle(
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
