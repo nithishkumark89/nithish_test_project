@@ -15,8 +15,8 @@ class BottomNavigationWidgets extends StatelessWidget {
           currentIndex: newIntex,
           elevation: 0,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.grey,
-          selectedItemColor: Colors.red[700],
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey[800],
           selectedFontSize: 15,
           unselectedFontSize: 13,
@@ -25,7 +25,7 @@ class BottomNavigationWidgets extends StatelessWidget {
               color:Colors.black),
           unselectedLabelStyle: TextStyle(
               color:Colors.black),
-          selectedIconTheme: IconThemeData(color: Colors.red[700], size: 35),
+          selectedIconTheme: IconThemeData(color: Colors.black, size: 35),
           unselectedIconTheme: IconThemeData(color: Colors.grey[700], size: 25),
           items: const [
             BottomNavigationBarItem(
