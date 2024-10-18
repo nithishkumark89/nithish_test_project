@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       //home: const ScreenNavigation(),
       initialRoute: '/',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         // Define your light theme
       ),
       // darkTheme: ThemeData.dark(),

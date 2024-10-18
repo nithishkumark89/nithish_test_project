@@ -15,7 +15,7 @@ class ApiService {
     try {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
-        return jsonDecode(response.body); // Parse response
+        return jsonDecode(response.body);
       } else {
         return {"error": "Login failed"};
       }
