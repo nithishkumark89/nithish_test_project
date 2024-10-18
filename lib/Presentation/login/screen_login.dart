@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,19 +13,20 @@ class ScreenLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          Center(
+          const Center(
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: EdgeInsets.only(right: 8.0),
               child: Text('Skip', style: TextStyle(fontSize: 18)),
             ),
           ),
           IconButton(
-            icon: Icon(Icons.arrow_forward_ios),
+            icon: const Icon(Icons.arrow_forward_ios),
             onPressed: () {
-              // Perform some action here, e.g., navigate to profile
+              Navigator.pushReplacementNamed(context, '/home');
             },
           ),
         ],
@@ -35,7 +37,13 @@ class ScreenLogin extends StatelessWidget {
           builder: (context, state) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
+              child:Container(
+                decoration:  BoxDecoration(
+                  image: DecorationImage(image:AssetImage('Assets/img.png'),
+
+                  )
+                ),
+                child:Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   // Email TextField
@@ -103,6 +111,9 @@ class ScreenLogin extends StatelessWidget {
                       }
 
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width/1.3, 20)
+                        ),
                         onPressed: () {
                           BlocProvider.of<LoginBloc>(context).add(
                             LoginSubmitted(
@@ -115,8 +126,23 @@ class ScreenLogin extends StatelessWidget {
                       );
                     },
                   ),
+                  Text.rich(
+                    TextSpan(
+                      text:
+                      "Don't Have an account",
+                      children: [
+                        TextSpan(
+                          text: 'Create Account',
+                          style: TextStyle(color: Colors.white),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-              ),
+              ),)
             );
           },
         ),
