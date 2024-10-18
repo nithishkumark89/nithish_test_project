@@ -9,9 +9,7 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> adUrls = [
-      'https://firebasestorage.googleapis.com/v0/b/sos-app-5aad3.appspot.com/o/basicResponder%2FDollarphotoclub_64852647-1024x682.jpg?alt=media&token=45332cbc-e1da-4f66-8ebc-529d4807297f',
-      'https://firebasestorage.googleapis.com/v0/b/sos-app-5aad3.appspot.com/o/basicResponder%2FAccident.jpg?alt=media&token=942beab2-cec1-4393-b786-613bbe7068b2',
-      'https://firebasestorage.googleapis.com/v0/b/sos-app-5aad3.appspot.com/o/basicResponder%2Fv4-460px-Do-a-Two-Person-Arm-Carry-Step-1-Version-2.jpg?alt=media&token=ccc1dc18-ccef-46b1-b011-c9d8b74543ab',
+      '',
     ];
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
